@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.fondo-menu {
+    background-color: #14205a;
+    color: white;
+}
+
+.texto-menu {
+    font-size: 1.3rem;
+    padding: 0px 10px;
+}
+
+table {
+    width: 100%;
+}
+
+.mov-izq {
+    text-align: end;
+    padding: 0px 15px 20px 0px;
+}
+
+.mov-der {
+    text-align: left;
+    padding: 0px 0px 20px 15px;
+}
+
+.footer {
+    margin-bottom: 50px;
+    margin: 0px 20px 50px 20px;
+}
+
+.titulo {
+    font-family: "Yuji Syuku", serif;
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 2.5rem;
+}
+
+.btn-kiros-success {
+    background-color: #f05f44;
+    border-color: #f05f44;
+    color: white;
+}
+
+.btn-kiros-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.fondo{
+    background: #FF512F;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

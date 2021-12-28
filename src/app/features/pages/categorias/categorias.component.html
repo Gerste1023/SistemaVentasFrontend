@@ -1,0 +1,58 @@
+<router-outlet></router-outlet>
+<!-- 
+<div class="row">
+    <div class="col-8 offset-2 text-center">
+        <div class="mov-izq">
+            <h1 class="titulo mt-4">CATEGORIAS</h1>
+            <button mat-fab  color="primary"  routerLink=""  matTooltip="Agregar Categoria">
+              <mat-icon>control_point_duplicate</mat-icon>
+            </button>
+        </div>
+
+
+        <div class="footer">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>ID</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="car_nombre">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>NOMBRE</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.car_nombre }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="car_descripcion">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>DESCRIPCION</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.car_descripcion }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                  <button
+                    mat-icon-button
+                    matTooltip="Editar Categoria"
+                    (click)="editarInstrumento(i)"
+                    color="primary"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    matTooltip="Eliminar Categoria"
+                    (click)="eliminarInstrumento(i)"
+                    color="warn"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+
+    </div>
+</div> -->

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row" style="width: 100%">
+      <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 ">
+        <div class="card text-center p-4">
+          <img src="../../../../../assets/img/usuario.png" class="login" alt="login">
+          <h2>Login</h2>
+          <div *ngIf="loading">
+            <div class="spinner-border m-auto" style="width: 3rem; height: 3rem;" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <h4>Cargando...</h4>
+          </div>
+          <form [formGroup]="login" style="padding-top: 10px">
+            <div [hidden]="cargando()">
+              <div class="form-group" style="text-align: start">
+                <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario" />
+                <span class="text-danger ml-2" *ngIf="campoEsValido( 'usuario' )">
+                  El usuario es <strong>requerido</strong>
+                </span>
+              </div>
+              <div class="form-group mt-3" style="text-align: start">
+                <input type="password" class="form-control" placeholder="Contraseña" (keyup.enter)="log()" formControlName="password" />
+                <span class="text-danger ml-2" *ngIf="campoEsValido( 'password' )">
+                  La contraseña es <strong>requerida</strong>
+                </span>
+              </div>
+              <div class="form-group mt-3">
+                <button
+                  class="btn btn-primary btn-login"
+                  style="margin-right: 10px;"
+                  [disabled]="login.invalid"
+                  type="submit"
+                  (click)="log()"
+                >
+                  Ingresar
+                </button>
+                <button class="btn btn-secondary" routerLink=""> Volver </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

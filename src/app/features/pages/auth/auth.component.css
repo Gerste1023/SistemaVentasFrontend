@@ -1,0 +1,39 @@
+p {
+    font-family: 'Rowdies', cursive;
+    font-size: 2.3em; 
+    color: #FA8903;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+hr {
+    border-width: 3px;
+    max-width: 850px;
+    border-color: #F05F44;
+}
+
+.btn-xl{
+    background-color: #F05F44;
+    border-color: #F05F44;
+    margin: 10px;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+}
+
+.btn-xl:hover {
+    background-color: #EE4B08;
+    border-radius: #EE4B08;
+    border-width: 4px;
+}
+
+.layout {
+    /* background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../../../assets/img/BANNER.gif); */
+    background-image: url(../../../../assets/img/BANNER.gif);
+    background-size: cover;
+    background-position: center;
+}

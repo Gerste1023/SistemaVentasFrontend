@@ -1,0 +1,33 @@
+<!-- <mat-sidenav-container fullscreen>
+    <mat-sidenav class="fondo-menu" #sidenav>
+        <mat-toolbar class="color-empresa-fondo color-empresa-letra">
+            <span>Menu</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <ul class="list-group pointer">
+                <li *ngFor="let item of templateMenu" 
+                    class="list-group-item  fondo-menu" 
+                    (click)="sidenav.toggle()"
+                    [routerLink]="[item.ruta]"
+                    routerLinkActive="active" >
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span class="texto-menu">{{ item.texto }}</span>
+                </li>
+            </ul>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-toolbar class="color-empresa-fondo color-empresa-letra" >
+        <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        <span class="spacer"></span>
+        <!-- <span> {{ auth.usuario }} </span> -- >
+        <button mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon></button>
+    </mat-toolbar>
+
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container> -->

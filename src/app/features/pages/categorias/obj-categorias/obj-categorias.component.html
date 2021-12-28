@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-8 offset-2 text-center">
+        <h1 class="titulo mt-4">{{ titulo }} CATEGORIA</h1>
+        
+        <form [formGroup]="miFormulario" autocomplete="off" class="my-3">
+            <div class="row">
+                <div class="col-6 my-5">
+                    <mat-form-field class="example-full-width float-start w-50" appearance="fill">
+                        <mat-label>Categoria</mat-label>
+                        <input matInput placeholder="Categoria">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="example-full-width w-100"  appearance="fill">
+                        <mat-label>Descripcion</mat-label>
+                        <textarea style="height: 100px;" matInput placeholder="Ex. esta categoria es para..."></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 my-5">
+                    <img src="./assets/img/categorias.jpg" class="img-fluid" alt="categorias">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button mat-raised-button class="btn btn-kiros-secondary" (click)="volver()">
+                        <span class="material-icons">
+                            close
+                        </span>
+                        Cancelar
+                    </button>
+                    <button mat-raised-button  class="mx-3 btn btn-kiros-success" (click)="guardar()">
+                        <span class="material-icons">
+                            add
+                        </span>
+                        {{ titulo === 'EDITAR' ? 'Modificar' : 'Agregar'}}
+                    </button>
+                </div>
+            </div>
+          </form>
+
+    </div>
+</div>

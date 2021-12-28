@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-10 offset-1 text-center">
+        <div class="mov-izq">
+            <h1 class="titulo mt-4">CLIENTES</h1>
+            <button mat-fab  color="primary"  routerLink="agregar" matTooltip="Agregar Cliente">
+              <mat-icon>person_add</mat-icon>
+            </button>
+        </div>
+
+        <div class="footer">
+          <mat-form-field appearance="standard" class="w-100">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Ej. Juan" #input>
+          </mat-form-field>
+
+            <table mat-table 
+                   [dataSource]="dataSource"
+                   class="mat-elevation-z8">
+                   <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class="text-center"><strong>ID</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="cl_rut">
+                <th mat-header-cell *matHeaderCellDef class="text-center"><strong>RUT</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.cl_rut }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="cl_nombre">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>NOMBRE</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.cl_nombre | titlecase }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="cl_telefono">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>TELEFONO</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.cl_telefono }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="cl_email">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>E-MAIL</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.cl_email }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="cl_ciudad">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>CIUDAD</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.cl_ciudad }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="cl_observacion">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>OBSERVACION</strong></th>
+                <td mat-cell *matCellDef="let element">{{ element.cl_observacion }}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                  <button
+                    mat-icon-button
+                    matTooltip="Editar Cliente"
+                    (click)="editarCliente(i)"
+                    color="primary"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    matTooltip="Eliminar Cliente"
+                    (click)="eliminarCliente(i)"
+                    color="warn"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="7">No se encuentra "{{input.value}}"</td>
+              </tr>
+
+            </table>
+          </div>
+
+    </div>
+</div>

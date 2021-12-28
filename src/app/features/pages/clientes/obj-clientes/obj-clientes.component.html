@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-8 offset-2 text-center">
+        <h1 class="titulo mt-4">{{ titulo }} CLIENTES</h1>
+        
+        <form [formGroup]="miFormulario" autocomplete="off" class="my-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6 my-5">
+                            <div class="row">
+                                <div class="col-5">
+                                    <mat-form-field class="example-full-width float-start" appearance="fill">
+                                        <mat-label>Rut</mat-label>
+                                        <input matInput placeholder="Ej. 12345678">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-7">
+                                    <mat-form-field class="example-full-width float-end" appearance="fill">
+                                        <mat-label>Teléfono</mat-label>
+                                        <input matInput placeholder="Ej. 1234567890">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width float-stard" appearance="fill">
+                                        <mat-label>Nombre completo</mat-label>
+                                        <input matInput placeholder="Nombre completo">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width float-stard" appearance="fill">
+                                        <mat-label>E-mail</mat-label>
+                                        <input matInput placeholder="Ej. test@test.co">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width float-stard" appearance="fill">
+                                        <mat-label>Dirección</mat-label>
+                                        <input matInput placeholder="Dirección">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <br>
+                            <mat-form-field class="example-full-width w-100"  appearance="fill">
+                                <mat-label>Observación</mat-label>
+                                <textarea style="height: 90px;" matInput placeholder="Ej. este cliente..."></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6 my-5">
+                            <img src="./assets/img/no-image.png" class="img-fluid" alt="cliente">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button mat-raised-button class="btn btn-kiros-secondary" (click)="volver()">
+                                <span class="material-icons">
+                                    close
+                                </span>
+                                Cancelar
+                            </button>
+                            <button mat-raised-button  class="mx-3 btn btn-kiros-success" (click)="guardar()">
+                                <span class="material-icons">
+                                    add
+                                </span>
+                                {{ titulo === 'EDITAR' ? 'Modificar' : 'Agregar'}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

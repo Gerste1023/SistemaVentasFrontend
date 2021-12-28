@@ -1,0 +1,27 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+h3{
+    font-family: 'Rowdies', cursive;
+}
+
+.btn-login{
+    background-color: #f05f44;
+    border-color: #f05f44;
+}
+
+/* .login{
+    width: 100%;
+    max-width: 330px;
+    text-align: center;
+} */
+
+img.login {
+    margin: auto;
+    width: 50%;
+}
+
