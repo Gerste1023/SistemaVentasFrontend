@@ -21,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoriasRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+  ],
+  exports: [
+    CategoriasComponent
   ]
 })
 export class CategoriasModule { }

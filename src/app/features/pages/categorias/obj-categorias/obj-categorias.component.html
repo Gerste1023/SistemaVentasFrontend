@@ -6,14 +6,16 @@
             <div class="row">
                 <div class="col-6 my-5">
                     <mat-form-field class="example-full-width float-start w-50" appearance="fill">
-                        <mat-label>Categoria</mat-label>
-                        <input matInput placeholder="Categoria">
+                        <mat-label>Categoría</mat-label>
+                        <input type="text" formControlName="nombre" matInput placeholder="Categoría">
                     </mat-form-field>
+                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('nombre')">Este campo es obligatorio*</span>
                     <br>
-                    <mat-form-field class="example-full-width w-100"  appearance="fill">
-                        <mat-label>Descripcion</mat-label>
-                        <textarea style="height: 100px;" matInput placeholder="Ex. esta categoria es para..."></textarea>
+                    <mat-form-field class="example-full-width w-100" appearance="fill">
+                        <mat-label>Descripción</mat-label>
+                        <textarea style="height: 100px;" matInput formControlName="descripcion" placeholder="Ex. esta categoría es para..."></textarea>
                     </mat-form-field>
+                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('descripcion')">Este campo es obligatorio*</span>
                 </div>
                 <div class="col-6 my-5">
                     <img src="./assets/img/categorias.jpg" class="img-fluid" alt="categorias">
@@ -27,7 +29,7 @@
                         </span>
                         Cancelar
                     </button>
-                    <button mat-raised-button  class="mx-3 btn btn-kiros-success" (click)="guardar()">
+                    <button mat-raised-button class="mx-3 btn btn-kiros-success" (click)="guardar()">
                         <span class="material-icons">
                             add
                         </span>

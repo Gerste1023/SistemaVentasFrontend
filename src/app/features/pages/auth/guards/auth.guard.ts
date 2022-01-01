@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../../core/services/auth.service';
 
@@ -8,16 +8,17 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class AuthGuard implements CanActivate, CanLoad {
 
-  constructor( private authService: AuthService ) { }
+  constructor( private authService: AuthService, private router: Router ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean > | boolean  {
 
-      if ( this.authService.auth.us_identificacion ) {
+      if ( this.authService.validarAutenticacion() ) {
         return true;
       }
       console.log('Bloqueado por el AuthGuards canActivate');
+      this.router.navigateByUrl('/auth');
 
     return false;
   }
@@ -26,16 +27,11 @@ export class AuthGuard implements CanActivate, CanLoad {
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
 
-      if ( this.authService.auth.us_identificacion ) {
+      if ( this.authService.validarAutenticacion() ) {
         return true;
       }
       console.log('Bloqueado por el AuthGuards canLoad');
-
-    
-      /*       
-      console.log('canLoad', false);
-      console.log(route);
-      console.log(segments); */
+      this.router.navigateByUrl('/auth');
       
     return false;
   }

@@ -11,6 +11,9 @@ import { ConfirmarComponent } from 'src/app/features/components/confirmar/confir
 })
 export class ListProductosComponent implements OnInit {
 
+
+  /* Pendiente la categoria, es un select */
+
   displayedColumns: string[] = [
     'id',
     'pro_codigo',

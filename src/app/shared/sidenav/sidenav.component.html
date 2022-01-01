@@ -19,13 +19,12 @@
             </ul>
         </mat-nav-list>
     </mat-sidenav>
-
     <mat-toolbar class="color-empresa-fondo color-empresa-letra fijar-menu">
         <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
         <img src="./assets/img/logo.png" (click)="sidenav.toggle()" class="logo" alt="logo">
         <span class="spacer"></span>
         <span class="material-icons"> person </span>
-        <span class="mx-2"> {{ auth.us_nombres }} Gerste Gomez </span>
+        <span class="mx-2"> {{ usuario | titlecase }} </span>
         <button mat-icon-button matTooltip="Cerrar Sessión" (click)="logout()"><mat-icon>logout</mat-icon></button>
     </mat-toolbar>
 

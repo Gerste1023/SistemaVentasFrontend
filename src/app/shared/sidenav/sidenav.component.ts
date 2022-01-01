@@ -43,6 +43,8 @@ export class SidenavComponent implements OnInit {
     },
   ];
 
+  usuario: string = '';
+
   get auth(){
     return this._authService.auth;
   }
@@ -51,6 +53,7 @@ export class SidenavComponent implements OnInit {
                private _authService: AuthService ) { }
   
   ngOnInit(): void {
+    this.usuario = this._authService.getTokenDecoded().sub;
   }
 
   logout() {
