@@ -27,8 +27,8 @@ export class ListCategoriasComponent implements OnInit {
 
   constructor( private _router: Router,
                private _dialog: MatDialog,
-               private _categoriasService: CategoriaService,
-               private _snackBar: MatSnackBar
+               private _snackBar: MatSnackBar,
+               private _categoriasService: CategoriaService
     ) { this.dataSource = new MatTableDataSource<Categoria>([]); }
     
   ngOnInit(): void {
@@ -42,19 +42,13 @@ export class ListCategoriasComponent implements OnInit {
   }
 
   editarCategoria( index: number ): void {
-
     this._router.navigate(['/categorias/editar',index]);
-
-
-    /*     // console.log(this._instrumentoService.editarInstrumento(index));
-        this.editarUnInstrumento = this._instrumentoService.editarInstrumento(index);
-        this.router.navigate(['/instrumentos/editar',index]);
-        // this.iraAgregar(); */
   }
 
-  eliminarCategoria( index: number ): void {
+  eliminarCategoria( index: number, data: string ): void {
     const dialog = this._dialog.open( ConfirmarComponent, {
-      width: '250px'
+      width: '250px',
+      data
     } );
 
     dialog.afterClosed().subscribe( result => {

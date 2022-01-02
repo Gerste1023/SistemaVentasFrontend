@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -6,17 +6,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './confirmar.component.html',
   styleUrls: ['./confirmar.component.css']
 })
-export class ConfirmarComponent implements OnInit {
+export class ConfirmarComponent {
 
-  constructor( private dialogRef: MatDialogRef<ConfirmarComponent> ) { }
-    
-  ngOnInit(): void {
-  }
+  constructor( private dialogRef: MatDialogRef<ConfirmarComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: string = '' ) { }
 
   borrar() {
-    
     this.dialogRef.close(true);
-
   }
 
   cerrar(){

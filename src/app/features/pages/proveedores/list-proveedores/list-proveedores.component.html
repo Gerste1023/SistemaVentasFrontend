@@ -21,29 +21,29 @@
               <td mat-cell *matCellDef="let element">{{ element.id }}</td>
             </ng-container>
       
-            <ng-container matColumnDef="prov_nit">
+            <ng-container matColumnDef="nit">
               <th mat-header-cell *matHeaderCellDef class="text-center"><strong>NIT</strong></th>
-              <td mat-cell *matCellDef="let element">{{ element.prov_nit }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.nit }}</td>
             </ng-container>
       
-            <ng-container matColumnDef="prov_nombre">
+            <ng-container matColumnDef="nombre">
               <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>NOMBRE</strong></th>
-              <td mat-cell *matCellDef="let element">{{ element.prov_nombre | titlecase  }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.nombre | titlecase  }}</td>
             </ng-container>
       
-            <ng-container matColumnDef="prov_direccion">
+            <ng-container matColumnDef="direccion">
               <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>DIRECCIÓN</strong></th>
-              <td mat-cell *matCellDef="let element">{{ element.prov_direccion }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.direccion }}</td>
             </ng-container>
       
-            <ng-container matColumnDef="prov_telefono">
+            <ng-container matColumnDef="telefono">
               <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>TELÉFONO</strong></th>
-              <td mat-cell *matCellDef="let element">{{ element.prov_telefono }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.telefono }}</td>
             </ng-container>
       
-            <ng-container matColumnDef="prov_email">
+            <ng-container matColumnDef="email">
               <th mat-header-cell *matHeaderCellDef class=" text-center"><strong>E-MAIL</strong></th>
-              <td mat-cell *matCellDef="let element">{{ element.prov_email }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.email }}</td>
             </ng-container>
       
             <ng-container matColumnDef="actions">
@@ -60,7 +60,7 @@
                 <button
                   mat-icon-button
                   matTooltip="Eliminar Proveedor"
-                  (click)="eliminarProveedor(i)"
+                  (click)="eliminarProveedor(element.id, element.nombre)"
                   color="warn"
                 >
                   <mat-icon>delete</mat-icon>

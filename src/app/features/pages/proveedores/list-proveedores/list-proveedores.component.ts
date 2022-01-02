@@ -13,11 +13,11 @@ export class ListProveedoresComponent implements OnInit {
 
   displayedColumns: string[] = [
     'id',
-    'prov_nit',
-    'prov_nombre',
-    'prov_direccion',
-    'prov_telefono',
-    'prov_email',
+    'nit',
+    'nombre',
+    'direccion',
+    'telefono',
+    'email',
     'actions',
   ];
 
@@ -31,16 +31,28 @@ export class ListProveedoresComponent implements OnInit {
     this.cargarProveedor();
   }
 
-  editarProveedor( index: number ): void {
-
-    this._router.navigate(['/proveedores/editar',index]);
-
+  cargarProveedor() {
+    this.dataSource = new MatTableDataSource( [
+      {
+        id: 1,
+        nit:'901534393 - 1',
+        nombre:'K-IROS SOLUCIONES Y TECNOLOGIA S.A.S',
+        direccion:'OLAYA SECTOR LAS AMERICAS CLL47 N? 85B15',
+        telefono:'3014779078',
+        email:'INFO@K-IROS.COM',
+      },
+    ] );
   }
 
-  eliminarProveedor( index: number ): void {
+  editarProveedor( index: number ): void {
+    this._router.navigate(['/proveedores/editar',index]);
+  }
+
+  eliminarProveedor( index: number, data: string ): void {
 
     const dialog = this._dialog.open( ConfirmarComponent, {
-      width: '250px'
+      width: '250px',
+      data
     } );
 
     dialog.afterClosed().subscribe( result => {
@@ -50,19 +62,6 @@ export class ListProveedoresComponent implements OnInit {
       }
     });
     
-  }
-
-  cargarProveedor() {
-    this.dataSource = new MatTableDataSource( [
-      {
-        id: 1,
-        prov_nit:'901534393 - 1',
-        prov_nombre:'K-IROS SOLUCIONES Y TECNOLOGIA S.A.S',
-        prov_direccion:'OLAYA SECTOR LAS AMERICAS CLL47 N? 85B15',
-        prov_telefono:'3014779078',
-        prov_email:'INFO@K-IROS.COM',
-      },
-    ] );
   }
 
   applyFilter(event: Event) {

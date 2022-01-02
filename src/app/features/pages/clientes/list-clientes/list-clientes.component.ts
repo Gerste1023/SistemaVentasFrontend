@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { ConfirmarComponent } from 'src/app/features/components/confirmar/confirmar.component';
+import { Cliente } from '../../../../core/interfaces/cliente.interface';
+import { ClienteService } from '../../../../core/services/cliente.service';
 
 @Component({
   selector: 'app-list-clientes',
@@ -14,102 +17,66 @@ export class ListClientesComponent implements OnInit {
 
   displayedColumns: string[] = [
     'id',
-    'cl_rut',
-    'cl_nombre',
-    'cl_telefono',
-    'cl_email',
-    'cl_ciudad',
-    'cl_observacion',
+    'rut',
+    'nombre',
+    'telefono',
+    'email',
+    'ciudad',
+    'observacion',
     'actions',
   ];
 
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Cliente>;
 
   constructor( private _router: Router,
                private _dialog: MatDialog,
-    ) { }
+               private _snackBar: MatSnackBar,
+               private _clienteService: ClienteService,
+    ) { this.dataSource = new MatTableDataSource<Cliente>([]); }
 
   ngOnInit(): void {
     this.cargarCliente();
   }
 
+  cargarCliente() {
+    this._clienteService.getCliente().subscribe( clientes => { 
+      this.dataSource.data = clientes
+    });
+  }
+
   editarCliente( index: number ): void {
-
     this._router.navigate(['/clientes/editar',index]);
-
   }
     
-  eliminarCliente( index: number ): void {
+  eliminarCliente( index: number, data: string ): void {
 
     const dialog = this._dialog.open( ConfirmarComponent, {
-      width: '250px'
+      width: '250px',
+      data
     } );
 
     dialog.afterClosed().subscribe( result => {
       if ( result ) {
-        
-        //borrar cliente con el servicio y despues cargar el contenido
+        this._clienteService.borrarCliente(index.toString()).subscribe( resp => {
+          this.mostrarSnackbar("El cliente fue eliminado con exito!");
+          this.cargarCliente();
+        }, err => {
+          this.mostrarSnackbar(err.error.message);
+      })
       }
     });
-/*     this._instrumentoService.eliminarInstrumento(index);
-    this.cargarInstrumentos(); */
-  }
-  
-  cargarCliente() {
-    this.dataSource = new MatTableDataSource( [
-      {
-        id: 1,
-        cl_rut: '12345',
-        cl_nombre: 'JAIDER CASTELLON',
-        cl_telefono: '320789789',
-        cl_email: 'JAIDER@JAIDER.COM',
-        cl_ciudad: 'POR HAY',
-        cl_observacion: 'ESTE MAN ESTA BIEN LOCO, OJO CON ESO',
-      },
-      {
-        id: 2,
-        cl_rut: '12345',
-        cl_nombre: 'JAIDER CASTELLON',
-        cl_telefono: '320789789',
-        cl_email: 'JAIDER@JAIDER.COM',
-        cl_ciudad: 'POR HAY',
-        cl_observacion: 'ESTE MAN ESTA BIEN LOCO, OJO CON ESO',
-      },
-      {
-        id: 3,
-        cl_rut: '12345',
-        cl_nombre: 'JAIDER CASTELLON',
-        cl_telefono: '320789789',
-        cl_email: 'JAIDER@JAIDER.COM',
-        cl_ciudad: 'POR HAY',
-        cl_observacion: 'ESTE MAN ESTA BIEN LOCO, OJO CON ESO',
-      },
-      {
-        id: 4,
-        cl_rut: '12345',
-        cl_nombre: 'JAIDER CASTELLON',
-        cl_telefono: '320789789',
-        cl_email: 'JAIDER@JAIDER.COM',
-        cl_ciudad: 'POR HAY',
-        cl_observacion: 'ESTE MAN ESTA BIEN LOCO, OJO CON ESO',
-      },
-      {
-        id: 5,
-        cl_rut: '12345',
-        cl_nombre: 'JAIDER CASTELLON',
-        cl_telefono: '320789789',
-        cl_email: 'JAIDER@JAIDER.COM',
-        cl_ciudad: 'POR HAY',
-        cl_observacion: 'ESTE MAN ESTA BIEN LOCO, OJO CON ESO',
-      },
-      
-    
-    ] );
+
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  mostrarSnackbar( mensaje: string ): void {
+    this._snackBar.open( mensaje, 'Ok!', {
+      duration: 3000
+    });
   }
 
 }

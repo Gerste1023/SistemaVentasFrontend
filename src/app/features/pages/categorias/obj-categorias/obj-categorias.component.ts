@@ -46,7 +46,7 @@ export class ObjCategoriasComponent implements OnInit {
           .subscribe( categoria => this.miFormulario.setValue(categoria));          
   }
 
-  campoNoValido( campo: string){
+  campoNoValido( campo: string ){
     return this.miFormulario.get(campo)?.invalid  
           && this.miFormulario.get(campo)?.touched
   }

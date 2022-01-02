@@ -15,6 +15,7 @@ export class AuthService {
   private baseUrl: string = 'https://localhost:44333';
   private _auth: Auth | undefined;
   private _token: String | undefined;
+  private _tokens: string | undefined;
 
   get auth(): Auth {
     return { ...this._auth! }
@@ -35,23 +36,10 @@ export class AuthService {
                 tap( resp => {
                   if (resp.ok) {
                     this._auth = resp;
-                    this._token = resp.token;
+                    this._tokens = resp.token;
                   }
                 }),
               );
-    /* return this.http.get<Auth>(`${ this.baseUrl }/usuarios?q=${usuario}&p=${password}`)
-              .pipe(
-                tap( auth => { 
-                  this._auth = auth; 
-                  console.log(auth,'authService'); 
-                  
-                } ),
-
-                tap( auth => { localStorage.setItem('identificacion', auth.us_identificacion ) 
-                console.log(auth.us_identificacion,'authService');
-                
-                } ),
-              ); */
   }
 
 /*   validarToken(): Observable<boolean> {
@@ -76,6 +64,8 @@ export class AuthService {
   validarAutenticacion(): boolean {
 
     if ( localStorage.getItem('token') != undefined ) {
+      const stoken = localStorage.getItem('token') as string | undefined;
+      this._token = stoken;
       this._auth = { 
         identificacion: this.getTokenDecoded().identificacion, 
         nombres: this.getTokenDecoded().sub
@@ -83,7 +73,7 @@ export class AuthService {
     }else{
       return false;
     }
-    
+
     if ( this._token === localStorage.getItem('token') ) {
       return true;
     }
@@ -101,11 +91,8 @@ export class AuthService {
 
   getTokenDecoded(): any {
     const helper = new JwtHelperService();
-    
     const stoken = localStorage.getItem('token') as string | undefined;
- 
     const decodedToken = helper.decodeToken(stoken);
-
     return decodedToken;
   } 
 
