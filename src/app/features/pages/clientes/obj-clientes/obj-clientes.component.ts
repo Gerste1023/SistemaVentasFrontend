@@ -28,7 +28,7 @@ export class ObjClientesComponent implements OnInit {
     
     const errors = this.miFormulario.get('email')?.errors;
     if ( errors?.required ) {
-      return 'Email es obligatorio';
+      return 'Email es obligatorio*';
     } else if ( errors?.pattern ) {
       return 'El valor ingresado no tiene formato de correo: ejemplo@test.com';
     } else if ( errors?.emailTomado ) {
@@ -46,7 +46,7 @@ export class ObjClientesComponent implements OnInit {
     } else if ( errors?.maxlength ) {
       return 'Debe tener máximo 13 números';
     } else if ( errors?.minlength ) {
-      return 'Debe tener mínimo 13 números';
+      return 'Debe tener mínimo 10 números';
     }
 
     return '';

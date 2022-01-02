@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ConfirmarComponent } from 'src/app/features/components/confirmar/confirmar.component';
+import { ProveedorService } from '../../../../core/services/proveedor.service';
+import { Proveedor } from '../../../../core/interfaces/proveedor.interface';
 
 @Component({
   selector: 'app-list-proveedores',
@@ -21,27 +24,22 @@ export class ListProveedoresComponent implements OnInit {
     'actions',
   ];
 
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Proveedor>;
 
   constructor( private _router: Router,
                private _dialog: MatDialog,
-  ) { }
+               private _snackBar: MatSnackBar,
+               private _proveedorService: ProveedorService
+  ) { this.dataSource = new MatTableDataSource<Proveedor>([]); }
 
   ngOnInit(): void {
     this.cargarProveedor();
   }
 
   cargarProveedor() {
-    this.dataSource = new MatTableDataSource( [
-      {
-        id: 1,
-        nit:'901534393 - 1',
-        nombre:'K-IROS SOLUCIONES Y TECNOLOGIA S.A.S',
-        direccion:'OLAYA SECTOR LAS AMERICAS CLL47 N? 85B15',
-        telefono:'3014779078',
-        email:'INFO@K-IROS.COM',
-      },
-    ] );
+    this._proveedorService.getProveedor().subscribe( proveedor => { 
+      this.dataSource.data = proveedor
+    });
   }
 
   editarProveedor( index: number ): void {
@@ -49,7 +47,6 @@ export class ListProveedoresComponent implements OnInit {
   }
 
   eliminarProveedor( index: number, data: string ): void {
-
     const dialog = this._dialog.open( ConfirmarComponent, {
       width: '250px',
       data
@@ -57,8 +54,12 @@ export class ListProveedoresComponent implements OnInit {
 
     dialog.afterClosed().subscribe( result => {
       if ( result ) {
-
-      //borrar proveedor con el servicio y despues cargar el contenido
+        this._proveedorService.borrarProveedor(index.toString()).subscribe( resp => {
+          this.mostrarSnackbar("El proveedor fue eliminado con exito!");
+          this.cargarProveedor();
+        }, err => {
+          this.mostrarSnackbar(err.error.message);
+      })
       }
     });
     
@@ -67,6 +68,12 @@ export class ListProveedoresComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  mostrarSnackbar( mensaje: string ): void {
+    this._snackBar.open( mensaje, 'Ok!', {
+      duration: 3000
+    });
   }
 
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ConfirmarComponent } from '../../../components/confirmar/confirmar.component';
 import { CategoriaService } from '../../../../core/services/categoria.service';
 import { Categoria } from 'src/app/core/interfaces/categoria.inteface';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-categorias',

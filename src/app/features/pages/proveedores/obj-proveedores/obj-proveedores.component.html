@@ -11,32 +11,37 @@
                                 <div class="col-5">
                                     <mat-form-field class="example-full-width float-start" appearance="fill">
                                         <mat-label>Nit</mat-label>
-                                        <input matInput placeholder="Ej. 12345678-9">
+                                        <input formControlName="nit" matInput placeholder="Ej. 12345678-9">
                                     </mat-form-field>
+                                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('nit')">Este campo es obligatorio*</span>
                                 </div>
                                 <div class="col-7">
                                     <mat-form-field class="example-full-width float-end" appearance="fill">
                                         <mat-label>Teléfono</mat-label>
-                                        <input matInput placeholder="Ej. 1234567890">
+                                        <input formControlName="telefono" matInput placeholder="Ej. 1234567890">
                                     </mat-form-field>
+                                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('telefono')">{{ telefonoErrorMsg }}</span>
                                 </div>
                                 <div class="col-12">
                                     <mat-form-field class="example-full-width float-stard" appearance="fill">
                                         <mat-label>Nombre completo</mat-label>
-                                        <input matInput placeholder="Nombre completo">
+                                        <input formControlName="nombre" matInput placeholder="Nombre completo">
                                     </mat-form-field>
+                                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('nombre')">Este campo es obligatorio*</span>
                                 </div>
                                 <div class="col-12">
                                     <mat-form-field class="example-full-width float-stard" appearance="fill">
                                         <mat-label>E-mail</mat-label>
-                                        <input matInput placeholder="Ej. test@test.co">
+                                        <input formControlName="email" matInput placeholder="Ej. test@test.co">
                                     </mat-form-field>
+                                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('email')">{{ emailErrorMsg }}</span>
                                 </div>
                                 <div class="col-12">
                                     <mat-form-field class="example-full-width float-stard" appearance="fill">
                                         <mat-label>Dirección</mat-label>
-                                        <input matInput placeholder="Dirección">
+                                        <input formControlName="direccion" matInput placeholder="Dirección">
                                     </mat-form-field>
+                                    <span class="form-text fw-bold text-danger" *ngIf="campoNoValido('direccion')">Este campo es obligatorio*</span>
                                 </div>
                             </div>
                         </div>
