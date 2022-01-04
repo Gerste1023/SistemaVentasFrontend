@@ -1,4 +1,4 @@
 export interface Respuesta {
     message: string;
-    ok: boolean;
+    ok     : boolean;
 }
