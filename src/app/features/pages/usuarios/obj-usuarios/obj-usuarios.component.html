@@ -53,18 +53,19 @@
                                 <div class="col-12">
                                     <mat-form-field class="example-full-width float-stard" appearance="fill">
                                         <mat-label>Foto Url</mat-label>
-                                        <input formControlName="fotoUrl" type="url" matInput required>
+                                        <input formControlName="fotoUrl" type="url" matInput>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-12">
                                     <mat-form-field class="example-full-width float-stard" appearance="fill">
                                         <mat-label>Rol</mat-label>
-                                        <mat-select formControlName="rolId">
-                                            <mat-option *ngFor="let tipo of tipoUsuario" [value]="tipo.id">
+                                        <mat-select formControlName="rol">
+                                            <mat-option *ngFor="let tipo of tipoUsuario" [value]="tipo.id" >
                                                 {{ tipo.tipoRol }}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
+                                    formulario: {{ miFormulario.value.rol | json }}
                                 </div>
                             </div>
                         </div>

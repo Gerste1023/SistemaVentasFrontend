@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ValidacionesService } from '../../../../core/services/validaciones.service';
-import { UsuarioService } from '../../../../core/services/usuario.service';
+
 import { switchMap } from 'rxjs/operators';
+
 import { Rol } from '../../../../core/interfaces/tipoRol.inteface';
 import { RolService } from '../../../../core/services/rol.service';
+import { UsuarioService } from '../../../../core/services/usuario.service';
+import { ValidacionesService } from '../../../../core/services/validaciones.service';
 
 @Component({
   selector: 'app-obj-usuarios',
@@ -21,15 +23,15 @@ export class ObjUsuariosComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
     id            : [0, [] ],
-    identificacion: ['', [Validators.required, Validators.maxLength(11)] ],
-    nombres       : ['', [Validators.required ] ],
-    apellidos     : ['', [Validators.required ] ],
-    telefono      : ['', [Validators.required, Validators.maxLength(13)] ],
-    email         : ['', [Validators.required, Validators.pattern(this._valService.emailPattern)] ],
-    password      : ['', [Validators.required ] ],
-    direccion     : ['', [Validators.required, Validators.maxLength(100)] ],
+    identificacion: ['789654123', [Validators.required, Validators.maxLength(11)] ],
+    nombres       : ['Prueba', [Validators.required ] ],
+    apellidos     : ['De Usuario', [Validators.required ] ],
+    telefono      : ['3216549870', [Validators.required, Validators.maxLength(13)] ],
+    email         : ['test@hotmail.com', [Validators.required, Validators.pattern(this._valService.emailPattern)] ],
+    password      : ['admin123', [Validators.required ] ],
+    direccion     : ['por hay', [Validators.required, Validators.maxLength(100)] ],
     fotoUrl       : ['', [ ] ],
-    rolId         : [1, [Validators.required ] ],
+    rol           : [{ id: 0, tipoRol: 'CLIENTE'}, [Validators.required ] ],
   });
 
   get emailErrorMsg(): string {
@@ -62,19 +64,16 @@ export class ObjUsuariosComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
                private _router: Router,
+               private _snackBar: MatSnackBar,
+               private _rolService: RolService,
                private _usuarioService: UsuarioService,
                private _activatedRouted: ActivatedRoute,
                private _valService: ValidacionesService,
-               private _rolService: RolService,
-               private _snackBar: MatSnackBar
-    ) { }
+    ) {  }
 
   ngOnInit(): void {
-
-    this._rolService.getRol().subscribe( roles => {
-      this.tipoUsuario = roles;
-    });
-
+    
+    this._rolService.getRol().subscribe( roles => this.tipoUsuario = roles );
     if (this._router.url.includes('agregar')) {
       return
     }
@@ -85,7 +84,13 @@ export class ObjUsuariosComponent implements OnInit {
               .pipe(
                 switchMap( ({id}) => this._usuarioService.getUsuarioPorId( id ))
               )
-              .subscribe( usuario => this.miFormulario.setValue(usuario));
+              .subscribe( usuario => {
+                this.miFormulario.setValue(usuario);
+                /* HACER CARGAR EL SELECT POR DEFECTO 
+                console.log(this.miFormulario.get('rol')?.value);
+                console.log(this.tipoUsuario);
+                this.tipoUsuario = this.miFormulario.get('rol')?.value; */
+              });
   }
 
   campoNoValido( campo: string ){
@@ -100,7 +105,11 @@ export class ObjUsuariosComponent implements OnInit {
     }
 
     if (this._router.url.includes('agregar')) {
+      console.log(this.miFormulario.value,'formulario');
+      
       this._usuarioService.agregarUsuario(this.miFormulario.value).subscribe(usuario => {
+        console.log(usuario,'service');
+        
         if (usuario.ok) {
           this.mostrarSnackbar('Se agregó el usuario exitosamente');
           this._router.navigateByUrl('/usuarios');

@@ -1,3 +1,4 @@
+import { Rol } from './tipoRol.inteface';
 export interface Usuario {
     id             : number;
     identificacion : string;
@@ -8,6 +9,6 @@ export interface Usuario {
     password       : string;
     direccion      : string;
     fotoUrl?       : string;
-    rolId          : number;
+    rol            : Rol;
     ok?            : boolean;
 }

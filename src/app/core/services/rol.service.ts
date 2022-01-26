@@ -9,7 +9,7 @@ import { Rol } from '../interfaces/tipoRol.inteface';
 export class RolService {
 
   private baseUrl: string = 'https://localhost:44333';
-  private baseApi: string = 'api/';
+  private baseApi: string = 'api/Rol/ListarRoles';
 
   constructor( private http: HttpClient ) { }
 

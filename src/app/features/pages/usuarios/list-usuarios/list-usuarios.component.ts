@@ -22,7 +22,7 @@ export class ListUsuariosComponent implements OnInit {
     'telefono',
     'email',
     'direccion',
-    'tipoUsuario',
+    'rol',
     'actions',
   ];
 
@@ -40,7 +40,10 @@ export class ListUsuariosComponent implements OnInit {
   }
   
   cargarUsuario() {
-    this._usuarioService.getUsuario().subscribe( usuarios => this.dataSource.data = usuarios);
+    this._usuarioService.getUsuario().subscribe( usuarios => this.dataSource.data = usuarios );
+      /*{ console.log(usuarios);
+          console.log(usuarios[0].rol.tipoRol,'usuarios[0].rol.tipoRol');
+        }*/
   }
 
   editarUsuario( index: number ): void {

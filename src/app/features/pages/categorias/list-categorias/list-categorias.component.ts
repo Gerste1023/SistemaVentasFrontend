@@ -21,8 +21,6 @@ export class ListCategoriasComponent implements OnInit {
     'actions',
   ];
 
-  categorias: Categoria[] = [];
-
   dataSource!: MatTableDataSource<Categoria>;
 
   constructor( private _router: Router,
@@ -35,7 +33,7 @@ export class ListCategoriasComponent implements OnInit {
     this.cargarCategorias();
   }
 
-  cargarCategorias() {
+  cargarCategorias(): void {
     this._categoriasService.getCategoria().subscribe( categorias => { 
       this.dataSource.data = categorias
     });
@@ -63,7 +61,7 @@ export class ListCategoriasComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
